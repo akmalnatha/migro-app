@@ -6,7 +6,8 @@ export default function ProjectCard() {
   var isWishlist = true;
   var isVerified = true;
   var isProjectDetail = false;
-  var isFeaturedProject = true;
+  var isFeaturedProject = false;
+  var isExploreCard = true;
   return isProjectDetail ? (
     // Project Detail
     <View className=" m-3 mt-11">
@@ -61,7 +62,7 @@ export default function ProjectCard() {
       </View>
     </View>
   ) : isFeaturedProject ? (
-    // Featured Project Card di Home Page
+    // Featured Project Card di HOME PAGE dan EXPLORE PAGE
     <View style={styles.featuredProjectCard}>
       <View style={styles.imageContainer}>
         <Image
@@ -74,32 +75,38 @@ export default function ProjectCard() {
           size={24}
           color={isWishlist ? "red" : "black"}
         />
-        <View className=" flex-row items-center justify-between mt-4 mb-2 mx-3">
-          <View className=" flex-row items-center justify-start">
-            <Text className=" text-black font-bold text-xl">CRYPTID</Text>
-            {isVerified ? (
-              <Ionicons
-                style={styles.verified}
-                name={"checkmark-circle"}
-                size={24}
-                color={"green"}
-              />
-            ) : (
-              <></>
-            )}
-          </View>
-          <View className=" flex-row items-center justify-start gap-2">
-            <Ionicons
-              name={"pricetag-outline"}
-              size={20}
-              color={"black"}
-              style={styles.categoryIcon}
-            />
-            <Text>Comic & Illustration</Text>
-          </View>
+        <View className=" bg-[#49CCB4] rounded-xl flex-row items-center justify-start absolute right-2 bottom-3 p-1">
+          <Ionicons name={"time-outline"} size={24} color={"white"} />
+          <Text className=" text-white ml-1">134 day(s)</Text>
         </View>
-        <Text className=" mx-3">ONE</Text>
-        {/* Progress Bar Indicator */}
+      </View>
+      <View className=" flex-row items-center justify-between mt-4 mb-2 mx-3">
+        <View className=" flex-row items-center justify-start">
+          <Text className=" text-black font-bold text-xl">CRYPTID</Text>
+          {isVerified ? (
+            <Ionicons
+              style={styles.verified}
+              name={"checkmark-circle"}
+              size={24}
+              color={"green"}
+            />
+          ) : (
+            <></>
+          )}
+        </View>
+        <View className=" flex-row items-center justify-start gap-2">
+          <Ionicons
+            name={"pricetag-outline"}
+            size={20}
+            color={"black"}
+            style={styles.categoryIcon}
+          />
+          <Text>Comic & Illustration</Text>
+        </View>
+      </View>
+      {!isExploreCard ? <Text className=" mx-3">ONE</Text> : <></>}
+      {/* Progress Bar Indicator */}
+      {!isExploreCard ? (
         <View className="flex-row items-center justify-start my-3 mx-3">
           <Image
             className="w-5 h-5 mr-2"
@@ -112,10 +119,50 @@ export default function ProjectCard() {
           />
           <Text>12 day(s) to go</Text>
         </View>
-      </View>
+      ) : (
+        <></>
+      )}
     </View>
   ) : (
-    <View></View>
+    <View className=" w-full bg-white rounded-2xl flex-row overflow-hidden pr-2">
+      <View className=" relative">
+        <Image
+          source={require("../assets/images/banner.jpg")}
+          style={styles.cardImage}
+        />
+        <Ionicons
+          style={styles.wishlistCard}
+          name={isWishlist ? "heart" : "heart-outline"}
+          size={20}
+          color={isWishlist ? "red" : "black"}
+        />
+        {/* Progress Bar Indicator */}
+        <View className=" bg-[#49CCB4] rounded-xl flex-row items-center justify-start absolute left-2 bottom-3 p-1">
+          {/* Progress Bar Indicator */}
+          <Ionicons name={"time-outline"} size={18} color={"white"} />
+          <Text className=" text-white ml-1 text-[10px]">134 day(s)</Text>
+        </View>
+      </View>
+      <View className=" ml-2 flex-col flex-1 py-3">
+        <Text
+          numberOfLines={1}
+          ellipsizeMode="tail"
+          className=" font-bold text-base"
+        >
+          The Adventure of Space Boy and Space Girl
+        </Text>
+        <View className=" flex-row items-center justify-start gap-2 mb-6">
+          <Ionicons
+            name={"pricetag-outline"}
+            size={20}
+            color={"#707181"}
+            style={styles.categoryIcon}
+          />
+          <Text className=" text-gray-500 ">Comic & Illustration</Text>
+        </View>
+        <View className=" bg-[#49CCB4] h-2 w-full"></View>
+      </View>
+    </View>
   );
 }
 
@@ -125,6 +172,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "grey",
     margin: 12,
+    paddingBottom: 16,
     marginTop: 44,
     borderRadius: 18,
     shadowColor: "black",
@@ -154,6 +202,20 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 9999,
     padding: 4,
+  },
+  wishlistCard: {
+    position: "absolute",
+    top: 12,
+    left: 12,
+    backgroundColor: "white",
+    borderRadius: 9999,
+    padding: 4,
+  },
+  cardImage: {
+    width: 124,
+    height: 108,
+    borderBottomLeftRadius: 16,
+    borderTopLeftRadius: 16,
   },
   verified: { marginLeft: 12 },
   text: {
