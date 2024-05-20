@@ -1,3 +1,4 @@
+import { supabase } from "@/lib/supabase";
 import Ionicons from "@expo/vector-icons/build/Ionicons";
 import { useState } from "react";
 import {
@@ -7,6 +8,8 @@ import {
   TextInput,
   Pressable,
   TouchableOpacity,
+  Alert,
+  ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -14,6 +17,23 @@ export default function Login() {
   const [email, onChangeEmail] = useState("");
   const [obscure, onChangeObscure] = useState(true);
   const [password, onChangePassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function signInWithEmail() {
+    setLoading(true);
+    const { error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
+
+    if (error) {
+      Alert.alert(error.message);
+      return;
+    }
+    Alert.alert("Login Successful");
+    setLoading(false);
+  }
+
   return (
     <SafeAreaView className=" justify-center items-center h-full px-5 bg-[#F9F9F9]">
       <Image
@@ -55,8 +75,18 @@ export default function Login() {
       <Text className=" mt-2 text-right w-full text-[#2E3362]">
         Forgot your password?
       </Text>
-      <TouchableOpacity className=" bg-[#008E8A] w-full p-3 rounded-3xl items-center justify-center mt-10">
-        <Text className=" text-white">Log In</Text>
+      <TouchableOpacity
+        className={`w-full p-3 rounded-3xl items-center justify-center mt-10 ${
+          loading ? "bg-[#707181]" : "bg-[#008E8A]"
+        }`}
+        disabled={loading}
+        onPress={() => signInWithEmail()}
+      >
+        {loading ? (
+          <ActivityIndicator size="small" color="white" />
+        ) : (
+          <Text className=" text-white">Login</Text>
+        )}
       </TouchableOpacity>
       <View className=" flex-row mt-5">
         <Text className=" text-sm">Don’t have an account?</Text>
