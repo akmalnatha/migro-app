@@ -15,22 +15,22 @@ export default function Login() {
   const [obscure, onChangeObscure] = useState(true);
   const [password, onChangePassword] = useState("");
   return (
-    <SafeAreaView className=" justify-center items-center pt-14 px-5">
+    <SafeAreaView className=" justify-center items-center h-full px-5 bg-[#F9F9F9]">
       <Image
         source={require("../../../assets/images/migro-text.png")}
         className="w-52 h-20 mb-4"
         style={{ resizeMode: "contain" }}
       />
-      <Text className=" text-center font-bold text-xl mb-20">
+      <Text className=" text-center font-bold text-xl mb-14">
         {"Dreams Funded,\n Rewards Unbounded"}
       </Text>
       <TextInput
         placeholder="Email or Username"
         onChangeText={onChangeEmail}
         value={email}
-        className=" border p-3 w-full h-12 rounded-md mb-4"
+        className=" border p-3 w-full h-12 rounded-md mb-4 bg-white"
       ></TextInput>
-      <View className=" border p-3 w-full h-12 rounded-md relative">
+      <View className=" border p-3 w-full h-12 rounded-md relative bg-white">
         <TextInput
           secureTextEntry={obscure}
           placeholder="Password"
@@ -55,12 +55,12 @@ export default function Login() {
       <Text className=" mt-2 text-right w-full text-[#2E3362]">
         Forgot your password?
       </Text>
-      <TouchableOpacity className=" bg-[#008E8A] w-full p-3 rounded-3xl items-center justify-center mt-6">
+      <TouchableOpacity className=" bg-[#008E8A] w-full p-3 rounded-3xl items-center justify-center mt-10">
         <Text className=" text-white">Log In</Text>
       </TouchableOpacity>
       <View className=" flex-row mt-5">
-        <Text className=" text-xs">Don’t have an account?</Text>
-        <Text className=" text-xs text-[#2E3362] font-bold ml-1 underline">
+        <Text className=" text-sm">Don’t have an account?</Text>
+        <Text className=" text-sm text-[#2E3362] font-bold ml-1 underline">
           Register here
         </Text>
       </View>
