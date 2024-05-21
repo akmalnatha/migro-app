@@ -1,6 +1,7 @@
 import { supabase } from "@/lib/supabase";
 import Ionicons from "@expo/vector-icons/build/Ionicons";
 import { useState } from "react";
+import { useRouter } from "expo-router";
 import {
   View,
   Text,
@@ -14,6 +15,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Login() {
+  const router = useRouter();
   const [email, onChangeEmail] = useState("");
   const [obscure, onChangeObscure] = useState(true);
   const [password, onChangePassword] = useState("");
@@ -28,10 +30,12 @@ export default function Login() {
 
     if (error) {
       Alert.alert(error.message);
+      setLoading(false);
       return;
     }
-    Alert.alert("Login Successful");
+
     setLoading(false);
+    router.navigate("/(tabs)/register");
   }
 
   return (
