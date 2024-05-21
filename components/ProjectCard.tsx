@@ -196,22 +196,16 @@ export default function ProjectCard({
 
 const styles = StyleSheet.create({
   featuredProjectCard: {
+    width: "100%",
     backgroundColor: "white",
     borderWidth: 1,
-    borderColor: "grey",
-    margin: 12,
-    paddingBottom: 16,
-    marginTop: 44,
+    borderColor: "#D9D9D9",
+    paddingBottom: 8,
     borderRadius: 18,
-    shadowColor: "black",
+    shadowColor: "#000000",
     shadowOffset: { width: 0, height: -30 },
     shadowOpacity: 0.25,
     shadowRadius: 50,
-  },
-  // Style Container untuk sementara aja
-  container: {
-    margin: 12,
-    marginTop: 44,
   },
   imageContainer: {
     position: "relative",
