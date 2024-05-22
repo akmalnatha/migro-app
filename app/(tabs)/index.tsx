@@ -4,6 +4,7 @@ import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import BoxPhotoInput from '@/components/BoxPhotoInput';
 
 export default function HomeScreen() {
   return (
@@ -17,10 +18,11 @@ export default function HomeScreen() {
       }>
       <ThemedView style={styles.titleContainer}>
         <Text className='text-red-400 font-bold'>Halo</Text>
-        <ThemedText type="title">Welcome!</ThemedText>
+        <ThemedText type="title">Welcome there!</ThemedText>
         <HelloWave />
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
+        <BoxPhotoInput />
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
         <ThemedText>
           Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
