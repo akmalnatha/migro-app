@@ -10,7 +10,7 @@ import {
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 interface ProjectCardProps {
-  bannerImageUrl: string;
+  bannerImageUrl?: string;
   projectTitle: string;
   projectDesc: string;
   owner: string;
@@ -42,7 +42,11 @@ export default function ProjectCard({
   return isProjectDetail ? (
     <View className=" m-3 mt-11">
       <Image
-        source={require("../assets/images/banner.jpg")}
+        source={
+          bannerImageUrl
+            ? { uri: bannerImageUrl }
+            : { uri: "https://picsum.photos/id/66/800/800" }
+        }
         className=" w-full rounded-2xl h-52 object-cover"
       />
       <Text className=" text-black font-bold text-xl mt-2">{projectTitle}</Text>
@@ -93,7 +97,11 @@ export default function ProjectCard({
     >
       <View className={`${type == "explore" ? "w-[35%]" : "w-full"} relative`}>
         <Image
-          source={require("../assets/images/banner.jpg")}
+          source={
+            bannerImageUrl
+              ? { uri: bannerImageUrl }
+              : { uri: "https://picsum.photos/id/66/800/800" }
+          }
           className={`w-full ${
             type == "explore"
               ? "h-[100px] rounded-l-[16px]"

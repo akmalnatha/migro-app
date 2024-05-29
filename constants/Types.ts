@@ -1,17 +1,23 @@
 export interface Project {
   id: number;
-  previewImageUrl: string;
-  title: string;
-  ownerId: string;
+  name: string;
   category: string;
-  subCategory: string;
-  targetFunding: number;
-  currentFunding: number;
-  date: Date;
+  created_at: string;
+  description: string;
+  owner: string;
   backers: number;
+  target_funding: number;
+  deadline_date: string;
+  overview_image: string;
+  current_funding: number;
 }
 
-export interface ProjectPhoto {
+export interface Category {
+  id: number;
+  name: string;
+}
+
+export interface Campaign {
   id: number;
   projectId: number;
   imageUrl: string;

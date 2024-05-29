@@ -5,6 +5,8 @@ import {
   View,
   Text,
   ScrollView,
+  FlatList,
+  ListRenderItem,
 } from "react-native";
 
 import { HelloWave } from "@/components/HelloWave";
@@ -15,8 +17,42 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
 import ProjectCard from "@/components/ProjectCard";
 import { Chip } from "react-native-paper";
+import { useState, useEffect } from "react";
+import { fetchProjects } from "@/services/ProjectService";
+import { Project } from "@/constants/Types";
 
 export default function HomeScreen() {
+  const [projects, setProjects] = useState<Project[]>([]);
+
+  useEffect(() => {
+    const getProjects = async () => {
+      const data = await fetchProjects();
+      setProjects(data);
+    };
+
+    getProjects();
+  }, []);
+
+  const renderItem: ListRenderItem<Project> = ({ item }) => (
+    <View className=" pr-0">
+      <ProjectCard
+        backers={item.backers}
+        bannerImageUrl={item.overview_image}
+        category={item.category}
+        daysToGo={Math.ceil(
+          (new Date(item.deadline_date).getTime() - new Date().getTime()) /
+            (1000 * 60 * 60 * 24)
+        )}
+        isWishlist={false}
+        owner={item.owner}
+        projectDesc={item.description}
+        projectTitle={item.name}
+        isProjectDetail={false}
+        type="featured"
+      />
+    </View>
+  );
+
   return (
     <SafeAreaView
       edges={["top", "left", "right"]}
@@ -34,7 +70,7 @@ export default function HomeScreen() {
           Featured Projects
         </Text>
         <ProjectCard
-          bannerImageUrl={"@/assets/images/migro-text.png"}
+          bannerImageUrl={""}
           projectTitle={"Kontol"}
           projectDesc={"Nice banget banf"}
           owner={"Akmalkomeng"}
@@ -47,9 +83,7 @@ export default function HomeScreen() {
           <Text className="text-[20px] font-bold text-black mt-4 mb-3">
             Categories
           </Text>
-          <Text className="text-[14px] text-black mt-4 mb-3">
-            See All
-          </Text>
+          <Text className="text-[14px] text-black mt-4 mb-3">See All</Text>
         </View>
         <View className="flex flex-row flex-wrap gap-4 w-full">
           <Chip
@@ -119,7 +153,15 @@ export default function HomeScreen() {
         <Text className="text-[20px] font-bold text-black mt-4 mb-3">
           Recommended For You
         </Text>
-        <ProjectCard
+
+        <FlatList
+          data={projects}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id.toString()}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+        {/* <ProjectCard
           bannerImageUrl={"@/assets/images/migro-text.png"}
           projectTitle={"Kontol"}
           projectDesc={"Nice banget banf"}
@@ -128,8 +170,8 @@ export default function HomeScreen() {
           isWishlist={true}
           backers={12}
           daysToGo={4}
-        />
-        <SafeAreaView/>
+        /> */}
+        <SafeAreaView />
       </ScrollView>
     </SafeAreaView>
   );
