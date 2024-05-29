@@ -35,7 +35,7 @@ export default function Login() {
     }
 
     setLoading(false);
-    router.navigate("/(auth)/register");
+    router.replace("/(tabs)");
   }
 
   return (
