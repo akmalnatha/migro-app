@@ -32,6 +32,25 @@ export default function ExploreLayout() {
           ),
         }}
       />
+      <Stack.Screen
+        name="(project-detail)"
+        options={{
+          headerTitle: (props) => (
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: 8,
+              }}
+            >
+              <Text className="text-[20px] font-bold text-black">
+                Project Detail
+              </Text>
+            </View>
+          ),
+        }}
+      />
     </Stack>
     // <View>
     //   <Text className='text-white mt-8'>About</Text>
