@@ -18,71 +18,118 @@ import { Chip } from "react-native-paper";
 
 export default function HomeScreen() {
   return (
-    <SafeAreaView>
-      <ScrollView className="pt-3 px-4">
+    <SafeAreaView
+      edges={["top", "left", "right"]}
+      style={{ backgroundColor: "#F9F9F9" }}
+    >
+      <View className="pt-3 px-4 bg-[#F9F9F9]">
         <Image
           source={require("@/assets/images/migro-text.png")}
           className="w-[108px] h-[44px] mx-auto"
           style={{ resizeMode: "contain" }}
         />
-        <Text className="text-[20px] font-bold text-black mt-2">
+      </View>
+      <ScrollView className="mt-2 px-4 bg-[#F9F9F9] pb-40">
+        <Text className="text-[20px] font-bold text-black mb-3">
           Featured Projects
         </Text>
         <ProjectCard
           bannerImageUrl={"@/assets/images/migro-text.png"}
           projectTitle={"Kontol"}
           projectDesc={"Nice banget banf"}
-          organization={"Akmalkomeng"}
+          owner={"Akmalkomeng"}
           category={"koool"}
           isWishlist={true}
           backers={12}
           daysToGo={4}
-          isProjectDetail={false}
-          isFeaturedProject={true}
-          isExploreCard={false}
         />
-        <Text className="text-[20px] font-bold text-black mt-4">
-          Categories
-        </Text>
+        <View className="w-full flex flex-row items-center justify-between">
+          <Text className="text-[20px] font-bold text-black mt-4 mb-3">
+            Categories
+          </Text>
+          <Text className="text-[14px] text-black mt-4 mb-3">
+            See All
+          </Text>
+        </View>
         <View className="flex flex-row flex-wrap gap-4 w-full">
-          <Chip textStyle={{ fontSize: 14 }} >
-            All
+          <Chip
+            textStyle={{ fontSize: 14 }}
+            style={{ backgroundColor: "#F9FAF5" }}
+            elevated
+          >
+            Art
           </Chip>
-          <Chip textStyle={{ fontSize: 14 }} >
-            All
+          <Chip
+            textStyle={{ fontSize: 14 }}
+            style={{ backgroundColor: "#F9FAF5" }}
+            elevated
+          >
+            Games
           </Chip>
-          <Chip textStyle={{ fontSize: 14 }} >
-            All
+          <Chip
+            textStyle={{ fontSize: 14 }}
+            style={{ backgroundColor: "#F9FAF5" }}
+            elevated
+          >
+            Food
           </Chip>
-          <Chip textStyle={{ fontSize: 14 }} >
-            All
+          <Chip
+            textStyle={{ fontSize: 14 }}
+            style={{ backgroundColor: "#F9FAF5" }}
+            elevated
+          >
+            Food
           </Chip>
-          <Chip textStyle={{ fontSize: 14 }} >
-            All
+          <Chip
+            textStyle={{ fontSize: 14 }}
+            style={{ backgroundColor: "#F9FAF5" }}
+            elevated
+          >
+            Film & Video
           </Chip>
-          <Chip textStyle={{ fontSize: 14 }} >
-            All
+          <Chip
+            textStyle={{ fontSize: 14 }}
+            style={{ backgroundColor: "#F9FAF5" }}
+            elevated
+          >
+            Music
           </Chip>
-          <Chip textStyle={{ fontSize: 14 }} >
-            All
+          <Chip
+            textStyle={{ fontSize: 14 }}
+            style={{ backgroundColor: "#F9FAF5" }}
+            elevated
+          >
+            Fashion
+          </Chip>
+          <Chip
+            textStyle={{ fontSize: 14 }}
+            style={{ backgroundColor: "#F9FAF5" }}
+            elevated
+          >
+            Photography
+          </Chip>
+          <Chip
+            textStyle={{ fontSize: 14 }}
+            style={{ backgroundColor: "#F9FAF5" }}
+            elevated
+          >
+            Shop & Commercial
           </Chip>
         </View>
-        <Text className="text-[20px] font-bold text-black mt-4">
-          Categories
+        <Text className="text-[20px] font-bold text-black mt-4 mb-3">
+          Recommended For You
         </Text>
-      <ProjectCard
-        bannerImageUrl={"@/assets/images/migro-text.png"}
-        projectTitle={"Kontol"}
-        projectDesc={"Nice banget banf"}
-        organization={"Akmalkomeng"}
-        category={"koool"}
-        isWishlist={true}
-        backers={12}
-        daysToGo={4}
-        isProjectDetail={false}
-        isFeaturedProject={true}
-        isExploreCard={false}
-      />
+        <ProjectCard
+          bannerImageUrl={"@/assets/images/migro-text.png"}
+          projectTitle={"Kontol"}
+          projectDesc={"Nice banget banf"}
+          owner={"Akmalkomeng"}
+          category={"koool"}
+          isWishlist={true}
+          backers={12}
+          daysToGo={4}
+        />
+        <SafeAreaView/>
       </ScrollView>
     </SafeAreaView>
   );

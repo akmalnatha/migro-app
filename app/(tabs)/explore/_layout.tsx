@@ -25,7 +25,7 @@ export default function ExploreLayout() {
               }}
             >
               <Text className="text-[20px] font-bold text-black">Explore</Text>
-              <Chip textStyle={{ fontSize: 14 }} icon={"chevron-down"}>
+              <Chip textStyle={{ fontSize: 14 }} icon={"chevron-down"} style={{backgroundColor: "#DDDEE1"}}>
                 All
               </Chip>
             </View>
