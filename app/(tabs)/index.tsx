@@ -72,7 +72,7 @@ export default function HomeScreen() {
           style={{ resizeMode: "contain" }}
         />
       </View>
-      <ScrollView className="mt-2 px-4 bg-[#F9F9F9] pb-40">
+      <ScrollView className="mt-2 px-4 bg-[#F9F9F9]">
         <Text className="text-[20px] font-bold text-black mb-3">
           Featured Projects
         </Text>
