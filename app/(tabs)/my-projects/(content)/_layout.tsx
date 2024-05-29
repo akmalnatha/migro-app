@@ -1,6 +1,6 @@
 import { MaterialTopTabs } from "@/components/navigation/TopTabNavigation";
 
-const TopTabLayout = () => {
+const TopTabMyProject = () => {
   return (
     <MaterialTopTabs
         screenOptions={{
@@ -13,4 +13,4 @@ const TopTabLayout = () => {
   );
 };
 
-export default TopTabLayout;
+export default TopTabMyProject;
