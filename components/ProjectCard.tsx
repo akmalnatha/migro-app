@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -36,9 +36,14 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   const [wishlist, setWishlist] = useState(isWishlist);
 
+  useEffect(() => {
+    setWishlist(isWishlist);
+  }, []);
+
   const handleWishlistToggle = () => {
     setWishlist(!wishlist);
   };
+
   return isProjectDetail ? (
     <View className=" m-3 mt-11">
       <Image

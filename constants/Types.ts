@@ -10,6 +10,8 @@ export interface Project {
   deadline_date: string;
   overview_image: string;
   current_funding: number;
+  is_recommended: boolean;
+  is_wishlisted: boolean;
 }
 
 export interface Category {

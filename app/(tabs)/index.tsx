@@ -39,24 +39,28 @@ export default function HomeScreen() {
     getProjects();
     getCategories();
   }, []);
-
-  const renderItem: ListRenderItem<Project> = ({ item }) => (
-    <View className=" pr-0">
-      <ProjectCard
-        backers={item.backers}
-        bannerImageUrl={item.overview_image}
-        category={item.category}
-        daysToGo={Math.ceil(
-          (new Date(item.deadline_date).getTime() - new Date().getTime()) /
-            (1000 * 60 * 60 * 24)
-        )}
-        isWishlist={false}
-        owner={item.owner}
-        projectDesc={item.description}
-        projectTitle={item.name}
-        isProjectDetail={false}
-        type="featured"
-      />
+  const featuredProject = projects.find((project) => project.is_recommended);
+  const renderRecommendedProjects: ListRenderItem<Project> = ({ item }) => (
+    <View>
+      {item.is_recommended ? (
+        <ProjectCard
+          backers={item.backers}
+          bannerImageUrl={item.overview_image}
+          category={item.category}
+          daysToGo={Math.ceil(
+            (new Date(item.deadline_date).getTime() - new Date().getTime()) /
+              (1000 * 60 * 60 * 24)
+          )}
+          isWishlist={false}
+          owner={item.owner}
+          projectDesc={item.description}
+          projectTitle={item.name}
+          isProjectDetail={false}
+          type="featured"
+        />
+      ) : (
+        <></>
+      )}
     </View>
   );
 
@@ -76,16 +80,24 @@ export default function HomeScreen() {
         <Text className="text-[20px] font-bold text-black mb-3">
           Featured Projects
         </Text>
-        <ProjectCard
-          bannerImageUrl={""}
-          projectTitle={"Kontol"}
-          projectDesc={"Nice banget banf"}
-          owner={"Akmalkomeng"}
-          category={"koool"}
-          isWishlist={true}
-          backers={12}
-          daysToGo={4}
-        />
+        {featuredProject && (
+          <ProjectCard
+            backers={featuredProject.backers}
+            bannerImageUrl={featuredProject.overview_image}
+            category={featuredProject.category}
+            daysToGo={Math.ceil(
+              (new Date(featuredProject.deadline_date).getTime() -
+                new Date().getTime()) /
+                (1000 * 60 * 60 * 24)
+            )}
+            isWishlist={false}
+            owner={featuredProject.owner}
+            projectDesc={featuredProject.description}
+            projectTitle={featuredProject.name}
+            isProjectDetail={false}
+            type="featured"
+          />
+        )}
         <View className="w-full flex flex-row items-center justify-between">
           <Text className="text-[20px] font-bold text-black mt-4 mb-3">
             Categories
@@ -112,7 +124,7 @@ export default function HomeScreen() {
 
         <FlatList
           data={projects}
-          renderItem={renderItem}
+          renderItem={renderRecommendedProjects}
           keyExtractor={(item) => item.id.toString()}
           horizontal
           showsHorizontalScrollIndicator={false}
