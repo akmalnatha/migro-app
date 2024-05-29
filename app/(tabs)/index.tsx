@@ -19,18 +19,25 @@ import ProjectCard from "@/components/ProjectCard";
 import { Chip } from "react-native-paper";
 import { useState, useEffect } from "react";
 import { fetchProjects } from "@/services/ProjectService";
-import { Project } from "@/constants/Types";
+import { Category, Project } from "@/constants/Types";
+import { fetchCategories } from "@/services/CategoryService";
 
 export default function HomeScreen() {
   const [projects, setProjects] = useState<Project[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
     const getProjects = async () => {
       const data = await fetchProjects();
       setProjects(data);
     };
+    const getCategories = async () => {
+      const data = await fetchCategories();
+      setCategories(data);
+    };
 
     getProjects();
+    getCategories();
   }, []);
 
   const renderItem: ListRenderItem<Project> = ({ item }) => (
@@ -85,70 +92,19 @@ export default function HomeScreen() {
           </Text>
           <Text className="text-[14px] text-black mt-4 mb-3">See All</Text>
         </View>
-        <View className="flex flex-row flex-wrap gap-4 w-full">
-          <Chip
-            textStyle={{ fontSize: 14 }}
-            style={{ backgroundColor: "#F9FAF5" }}
-            elevated
-          >
-            Art
-          </Chip>
-          <Chip
-            textStyle={{ fontSize: 14 }}
-            style={{ backgroundColor: "#F9FAF5" }}
-            elevated
-          >
-            Games
-          </Chip>
-          <Chip
-            textStyle={{ fontSize: 14 }}
-            style={{ backgroundColor: "#F9FAF5" }}
-            elevated
-          >
-            Food
-          </Chip>
-          <Chip
-            textStyle={{ fontSize: 14 }}
-            style={{ backgroundColor: "#F9FAF5" }}
-            elevated
-          >
-            Food
-          </Chip>
-          <Chip
-            textStyle={{ fontSize: 14 }}
-            style={{ backgroundColor: "#F9FAF5" }}
-            elevated
-          >
-            Film & Video
-          </Chip>
-          <Chip
-            textStyle={{ fontSize: 14 }}
-            style={{ backgroundColor: "#F9FAF5" }}
-            elevated
-          >
-            Music
-          </Chip>
-          <Chip
-            textStyle={{ fontSize: 14 }}
-            style={{ backgroundColor: "#F9FAF5" }}
-            elevated
-          >
-            Fashion
-          </Chip>
-          <Chip
-            textStyle={{ fontSize: 14 }}
-            style={{ backgroundColor: "#F9FAF5" }}
-            elevated
-          >
-            Photography
-          </Chip>
-          <Chip
-            textStyle={{ fontSize: 14 }}
-            style={{ backgroundColor: "#F9FAF5" }}
-            elevated
-          >
-            Shop & Commercial
-          </Chip>
+        <View className="flex flex-row flex-wrap gap-3 w-full">
+          {categories.map((category, index) => (
+            <Chip
+              key={index}
+              textStyle={{ fontSize: 14 }}
+              style={{
+                backgroundColor: "#F9FAF5",
+              }}
+              elevated
+            >
+              {category.name}
+            </Chip>
+          ))}
         </View>
         <Text className="text-[20px] font-bold text-black mt-4 mb-3">
           Recommended For You
@@ -161,16 +117,6 @@ export default function HomeScreen() {
           horizontal
           showsHorizontalScrollIndicator={false}
         />
-        {/* <ProjectCard
-          bannerImageUrl={"@/assets/images/migro-text.png"}
-          projectTitle={"Kontol"}
-          projectDesc={"Nice banget banf"}
-          owner={"Akmalkomeng"}
-          category={"koool"}
-          isWishlist={true}
-          backers={12}
-          daysToGo={4}
-        /> */}
         <SafeAreaView />
       </ScrollView>
     </SafeAreaView>
