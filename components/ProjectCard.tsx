@@ -43,7 +43,7 @@ export default function ProjectCard({
   };
   return isProjectDetail ? (
     // Project Detail
-    <View className=" m-3 mt-11">
+    <View className="">
       <Image
         source={require("../assets/images/banner.jpg")}
         className=" w-full rounded-2xl h-52 object-cover"
@@ -66,7 +66,7 @@ export default function ProjectCard({
       </View>
       <Text className=" mb-4 text-justify">{projectDesc}</Text>
       {/* Progress Bar Indicator */}
-      <View className="flex-row items-center justify-start my-3 flex-wrap gap-2">
+      <View className="flex-row items-center justify-start my-3 flex-wrap gap-3">
         <View className=" flex-row items-center justify-start">
           <Image
             className=" rounded-full object-cover w-5 h-5 mr-1"
