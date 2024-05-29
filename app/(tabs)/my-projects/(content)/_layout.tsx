@@ -6,7 +6,7 @@ const TopTabMyProject = () => {
         screenOptions={{
             tabBarLabelStyle: { textTransform: "capitalize", fontWeight: "bold"}
         }}>
-      <MaterialTopTabs.Screen name="index" options={{ title: "All" }} />
+      <MaterialTopTabs.Screen name="index" options={{ title: "Ongoing" }} />
       <MaterialTopTabs.Screen name="draft" options={{ title: "Draft" }} />
       <MaterialTopTabs.Screen name="ended" options={{ title: "Ended" }} />
     </MaterialTopTabs>
