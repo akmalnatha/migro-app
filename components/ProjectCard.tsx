@@ -43,7 +43,7 @@ export default function ProjectCard({
   };
   return isProjectDetail ? (
     // Project Detail
-    <View className=" m-3 mt-11">
+    <View className="">
       <Image
         source={require("../assets/images/banner.jpg")}
         className=" w-full rounded-2xl h-52 object-cover"
@@ -66,7 +66,7 @@ export default function ProjectCard({
       </View>
       <Text className=" mb-4 text-justify">{projectDesc}</Text>
       {/* Progress Bar Indicator */}
-      <View className="flex-row items-center justify-start my-3 flex-wrap gap-2">
+      <View className="flex-row items-center justify-start my-3 flex-wrap gap-3">
         <View className=" flex-row items-center justify-start">
           <Image
             className=" rounded-full object-cover w-5 h-5 mr-1"
@@ -196,22 +196,16 @@ export default function ProjectCard({
 
 const styles = StyleSheet.create({
   featuredProjectCard: {
+    width: "100%",
     backgroundColor: "white",
     borderWidth: 1,
-    borderColor: "grey",
-    margin: 12,
-    paddingBottom: 16,
-    marginTop: 44,
+    borderColor: "#D9D9D9",
+    paddingBottom: 8,
     borderRadius: 18,
-    shadowColor: "black",
+    shadowColor: "#000000",
     shadowOffset: { width: 0, height: -30 },
     shadowOpacity: 0.25,
     shadowRadius: 50,
-  },
-  // Style Container untuk sementara aja
-  container: {
-    margin: 12,
-    marginTop: 44,
   },
   imageContainer: {
     position: "relative",
