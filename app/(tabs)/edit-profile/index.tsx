@@ -45,9 +45,7 @@ export default function EditProfile() {
         <View className="w-32 relative rounded-full mb-8">
           <Image
             source={
-              image
-                ? { uri: image }
-                : require("../../../assets/images/profile.png")
+              image ? { uri: image } : require("@/assets/images/profile.png")
             }
             className=" w-32 h-32 rounded-full"
           />
