@@ -23,7 +23,8 @@ const TopTabExplore = () => {
       )}
       screenOptions={{
         tabBarLabelStyle: { textTransform: "capitalize", fontWeight: "bold" },
-        tabBarStyle: {elevation: 0}
+        tabBarStyle: {elevation: 0},
+        tabBarIndicatorStyle: {borderColor: "#49CCB4"}
       }}
     >
       <MaterialTopTabs.Screen name="index" options={{ title: "All" }} />

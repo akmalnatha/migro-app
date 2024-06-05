@@ -5,6 +5,7 @@ const TopTabLayout = () => {
     <MaterialTopTabs
       screenOptions={{
         tabBarLabelStyle: { textTransform: "capitalize", fontWeight: "bold" },
+        tabBarIndicatorStyle: {borderColor: "#49CCB4"}
       }}
     >
       <MaterialTopTabs.Screen name="overview" options={{ title: "Overview" }} />

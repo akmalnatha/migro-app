@@ -9,55 +9,50 @@ export default function Ending() {
     <ScrollView className="p-4">
       <View style={{ flex: 1, gap: 12 }}>
         <ProjectCard
-          bannerImageUrl={"@/assets/images/migro-text.png"}
-          projectTitle={"Kontol"}
+          projectTitle={"Test Projects"}
           projectDesc={"Nice banget banf"}
           owner={"Akmalkomeng"}
-          category={"koool"}
+          category={"Category"}
           isWishlist={true}
           backers={12}
           daysToGo={4}
           type="explore-first"
         />
         <ProjectCard
-          bannerImageUrl={"@/assets/images/migro-text.png"}
-          projectTitle={"Kontol"}
+          projectTitle={"Test Projects"}
           projectDesc={"Nice banget banf"}
           owner={"Akmalkomeng"}
-          category={"koool"}
+          category={"Category"}
           isWishlist={true}
           backers={12}
           daysToGo={4}
           type="explore"
         />
         <ProjectCard
-          bannerImageUrl={"@/assets/images/migro-text.png"}
-          projectTitle={"Kontol"}
+          projectTitle={"Test Projects"}
           projectDesc={"Nice banget banf"}
           owner={"Akmalkomeng"}
-          category={"koool"}
+          category={"Category"}
           isWishlist={true}
           backers={12}
           daysToGo={4}
           type="explore"
         />
         <ProjectCard
-          bannerImageUrl={"@/assets/images/migro-text.png"}
-          projectTitle={"Kontol"}
+          projectTitle={"Test Projects"}
           projectDesc={"Nice banget banf"}
           owner={"Akmalkomeng"}
-          category={"koool"}
+          category={"Category"}
           isWishlist={true}
           backers={12}
           daysToGo={4}
           type="explore"
         />
         <ProjectCard
-          bannerImageUrl={"@/assets/images/migro-text.png"}
-          projectTitle={"Kontol"}
+          projectTitle={"Test Projects"}
           projectDesc={"Nice banget banf"}
           owner={"Akmalkomeng"}
-          category={"koool"}
+          category={"Category"}
           isWishlist={true}
           backers={12}
           daysToGo={4}
