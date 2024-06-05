@@ -45,7 +45,6 @@ const BoxPhotoInput: React.FC<BoxPhotoInputProps> = () => {
 const styles = StyleSheet.create({
     container: {
         height: 140,
-        width: 360,
         borderWidth: 2,
         borderRadius: 10,
         borderStyle: 'dashed',
