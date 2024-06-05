@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Platform,
   View,
-  Text,
   ScrollView,
   FlatList,
   ListRenderItem,
@@ -16,7 +15,7 @@ import { ThemedView } from "@/components/ThemedView";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
 import ProjectCard from "@/components/ProjectCard";
-import { Chip } from "react-native-paper";
+import { Chip, Text } from "react-native-paper";
 import { useState, useEffect } from "react";
 import { fetchProjects } from "@/services/ProjectService";
 import { Category, Project } from "@/constants/Types";
@@ -25,6 +24,10 @@ import { fetchCategories } from "@/services/CategoryService";
 export default function HomeScreen() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
+
+  const data = [
+    
+  ]
 
   useEffect(() => {
     const getProjects = async () => {
