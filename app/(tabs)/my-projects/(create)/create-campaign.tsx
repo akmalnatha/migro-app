@@ -9,7 +9,7 @@ export default function CreateCampaign() {
   return (
     <ScrollView className="p-4 min-h-screen">
       <View style={{ flex: 1, gap: 16 }}>
-        <Text className="text-[20px] font-bold text-black">Overview</Text>
+        <Text className="text-[20px] font-bold text-black">Campaign</Text>
         <BoxPhotoInput />
         <TextInput
           mode="outlined"

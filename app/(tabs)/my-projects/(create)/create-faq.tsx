@@ -9,14 +9,21 @@ export default function CreateFaq() {
   return (
     <ScrollView className="p-4 min-h-screen">
       <View style={{ flex: 1, gap: 16 }}>
-        <Text className="text-[20px] font-bold text-black">Overview</Text>
-        <BoxPhotoInput />
+        <Text className="text-[20px] font-bold text-black">FAQ</Text>
         <TextInput
           mode="outlined"
-          placeholder="Description"
+          placeholder="Question"
           style={{ flexGrow: 1 }}
           contentStyle={{ height: 52 }}
           outlineStyle={{ height: 52 }}
+        />
+        <TextInput
+          mode="outlined"
+          placeholder="Answer"
+          multiline
+          style={{ flexGrow: 1 }}
+          contentStyle={{ minHeight: 104 }}
+          outlineStyle={{ minHeight: 104 }}
         />
         <View className="flex flex-row justify-between items-center w-full">
           <Text className="text-[16px] font-bold text-black">BACK</Text>

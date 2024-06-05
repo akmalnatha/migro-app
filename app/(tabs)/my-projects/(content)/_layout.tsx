@@ -4,7 +4,9 @@ const TopTabMyProject = () => {
   return (
     <MaterialTopTabs
         screenOptions={{
-            tabBarLabelStyle: { textTransform: "capitalize", fontWeight: "bold"}
+            tabBarLabelStyle: { textTransform: "capitalize", fontWeight: "bold"},
+            tabBarIndicatorStyle: {borderColor: "#49CCB4"}
+
         }}>
       <MaterialTopTabs.Screen name="index" options={{ title: "Ongoing" }} />
       <MaterialTopTabs.Screen name="draft" options={{ title: "Draft" }} />

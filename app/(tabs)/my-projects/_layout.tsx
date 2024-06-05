@@ -7,7 +7,7 @@ export default function MyProjectLayout() {
       screenOptions={{
         headerShadowVisible: false,
         headerTitleAlign: "center",
-        title: "centered",
+        title: "My Projects",
       }}
     >
       <Stack.Screen
