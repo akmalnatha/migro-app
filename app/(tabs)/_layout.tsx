@@ -1,5 +1,5 @@
-import { Tabs } from "expo-router";
-import React, { useState } from "react";
+import { Tabs, useSegments } from "expo-router";
+import React, { useEffect, useState } from "react";
 
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
@@ -13,6 +13,14 @@ import { View } from "react-native";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const segment = useSegments();
+  // get the current page from the segment
+  const currentSegment = segment[segment.length - 1]
+  useEffect(()=> {
+    console.log(currentSegment)
+  },[currentSegment])
+  // create an array of list pages you want to hide the tab bar in
+  const pagesToHideTabBar = ['(project-detail)', 'campaign', 'faq', '(create)', 'create-campaign', 'create-faq', 'create-backing', '(edit-profile)']
 
   return (
     <Tabs
@@ -20,6 +28,10 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: true,
         headerTitleAlign: "center",
+        tabBarStyle: {
+          // check if the current page is in the list then hide the tab bar
+          display: pagesToHideTabBar.includes(currentSegment) ? 'none' : 'flex',
+        },
       }}
     >
       <Tabs.Screen

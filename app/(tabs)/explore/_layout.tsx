@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, Animated, TouchableOpacity, TouchableWithoutFeedback, Dimensions } from 'react-native';
+import { View, Text, Animated, TouchableOpacity, TouchableWithoutFeedback, Dimensions, Platform } from 'react-native';
 import { Chip } from 'react-native-paper';
 import { Stack } from 'expo-router';
 
@@ -89,6 +89,7 @@ export default function ExploreLayout() {
         <Stack.Screen
           name="back-project"
           options={{
+            title: "Back Project",
             headerTitle: (props) => (
               <View
                 style={{
@@ -106,8 +107,9 @@ export default function ExploreLayout() {
           }}
         />
         <Stack.Screen
-          name="payment/index"
+          name="payment"
           options={{
+            title: "Payment",
             headerTitle: (props) => (
               <View
                 style={{
@@ -136,7 +138,7 @@ export default function ExploreLayout() {
               right: 0,
               bottom: 0,
               backgroundColor: 'rgba(0, 0, 0, 0)',
-              paddingTop: 80,
+              paddingTop: Platform.OS === "ios" ? 88 : 80,
               transform: [{ translateY: modalPosition }],
             }}
           >

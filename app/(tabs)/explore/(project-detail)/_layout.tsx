@@ -8,7 +8,7 @@ const TopTabLayout = () => {
         tabBarIndicatorStyle: {borderColor: "#49CCB4"}
       }}
     >
-      <MaterialTopTabs.Screen name="overview" options={{ title: "Overview" }} />
+      <MaterialTopTabs.Screen name="index" options={{ title: "Overview" }} />
       <MaterialTopTabs.Screen name="campaign" options={{ title: "Campaign" }} />
       <MaterialTopTabs.Screen name="faq" options={{ title: "FAQ" }} />
     </MaterialTopTabs>

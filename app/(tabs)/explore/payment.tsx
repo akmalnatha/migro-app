@@ -8,7 +8,6 @@ export default function Payment() {
   const [pledge, onChangePledge] = useState("");
   return (
     <ScrollView className=" bg-white">
-      <AppBar />
       <View className=" px-5">
         <Text className=" font-bold text-xl">CRYPTID</Text>
         <View className=" w-full h-[1px] bg-[#A6A7C2] my-3"></View>
