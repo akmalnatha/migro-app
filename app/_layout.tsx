@@ -10,6 +10,8 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { Platform } from "react-native";
+import { enableScreens } from "react-native-screens";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -23,6 +25,9 @@ export default function RootLayout() {
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
+    }
+    if (Platform.OS === "ios") {
+      enableScreens(false);
     }
   }, [loaded]);
 

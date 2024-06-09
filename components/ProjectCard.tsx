@@ -23,6 +23,7 @@ interface ProjectCardProps {
   type?: "featured" | "explore" | "explore-first";
   isProjectDetail?: boolean;
   onPress?: (e: GestureResponderEvent) => void
+  addedClass?: string
 }
 
 export default function ProjectCard({
@@ -36,7 +37,8 @@ export default function ProjectCard({
   daysToGo,
   type = "featured",
   isProjectDetail = false,
-  onPress
+  onPress,
+  addedClass
 }: ProjectCardProps) {
   const [wishlist, setWishlist] = useState(isWishlist);
 
@@ -98,7 +100,7 @@ export default function ProjectCard({
       </View>
     </View>
   ) : (
-    <TouchableWithoutFeedback onPress={onPress}>
+    <TouchableWithoutFeedback onPress={onPress} className={addedClass}>
       <View
         style={{ shadowColor: "#000000", shadowOpacity: 0.25, shadowRadius: 4, shadowOffset: {width: 0, height: 0}}}
         className={`bg-[#F9FAF5] rounded-[16px] flex ${

@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   Image,
+  GestureResponderEvent,
 } from "react-native";
 import { Divider, Text } from "react-native-paper";
 
@@ -13,6 +14,7 @@ interface BackProjectCardProps {
   title: string;
   description: string;
   benefits?: string;
+  onPress?: ((event: GestureResponderEvent) => void) | undefined
 }
 
 export default function BackProjectCard({
@@ -20,8 +22,8 @@ export default function BackProjectCard({
   title,
   description,
   benefits,
+  onPress
 }: BackProjectCardProps) {
-  const router = useRouter();
   return (
     <View
       style={{
@@ -45,7 +47,7 @@ export default function BackProjectCard({
       )}
       <TouchableOpacity
         className={`p-3 rounded-3xl items-center justify-center bg-[#008E8A]`}
-        onPress={() => router.push("/(tabs)/explore/payment/index")}
+        onPress={onPress}
       >
         <Text className="text-white">Pay</Text>
       </TouchableOpacity>
