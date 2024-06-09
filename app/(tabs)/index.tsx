@@ -20,14 +20,12 @@ import { useState, useEffect } from "react";
 import { fetchProjects } from "@/services/ProjectService";
 import { Category, Project } from "@/constants/Types";
 import { fetchCategories } from "@/services/CategoryService";
+import { useCategory } from "@/context/CategoryContext";
 
 export default function HomeScreen() {
+  const category_context = useCategory()
   const [projects, setProjects] = useState<Project[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
-
-  const data = [
-    
-  ]
 
   useEffect(() => {
     const getProjects = async () => {
@@ -43,8 +41,8 @@ export default function HomeScreen() {
     getCategories();
   }, []);
   const featuredProject = projects.find((project) => project.is_recommended);
-  const renderRecommendedProjects: ListRenderItem<Project> = ({ item }) => (
-    <View>
+  const renderRecommendedProjects: ListRenderItem<Project> = ({ item, index }) => (
+    <View className={index != 0 ? "ml-3" : ""}>
       {item.is_recommended ? (
         <ProjectCard
           backers={item.backers}
@@ -79,35 +77,36 @@ export default function HomeScreen() {
           style={{ resizeMode: "contain" }}
         />
       </View>
-      <ScrollView className="mt-2 px-4 bg-[#F9F9F9]">
-        <Text className="text-[20px] font-bold text-black mb-3">
-          Featured Projects
-        </Text>
-        {featuredProject && (
-          <ProjectCard
-            backers={featuredProject.backers}
-            bannerImageUrl={featuredProject.overview_image}
-            category={featuredProject.category}
-            daysToGo={Math.ceil(
-              (new Date(featuredProject.deadline_date).getTime() -
-                new Date().getTime()) /
-                (1000 * 60 * 60 * 24)
-            )}
-            isWishlist={false}
-            owner={featuredProject.owner}
-            projectDesc={featuredProject.description}
-            projectTitle={featuredProject.name}
-            isProjectDetail={false}
-            type="featured"
-          />
-        )}
-        <View className="w-full flex flex-row items-center justify-between">
+      <ScrollView className="mt-2 bg-[#F9F9F9]">
+        <View className="px-4">
+          <Text className="text-[20px] font-bold text-black mb-3">
+            Featured Projects
+          </Text>
+          {featuredProject && (
+            <ProjectCard
+              backers={featuredProject.backers}
+              bannerImageUrl={featuredProject.overview_image}
+              category={featuredProject.category}
+              daysToGo={Math.ceil(
+                (new Date(featuredProject.deadline_date).getTime() -
+                  new Date().getTime()) /
+                  (1000 * 60 * 60 * 24)
+              )}
+              isWishlist={false}
+              owner={featuredProject.owner}
+              projectDesc={featuredProject.description}
+              projectTitle={featuredProject.name}
+              isProjectDetail={false}
+              type="featured"
+            />
+          )}
+        </View>
+        <View className="w-full px-4">
           <Text className="text-[20px] font-bold text-black mt-4 mb-3">
             Categories
           </Text>
-          <Text className="text-[14px] text-black mt-4 mb-3">See All</Text>
         </View>
-        <View className="flex flex-row flex-wrap gap-3 w-full">
+        <View className="px-4 flex flex-row flex-wrap gap-3 w-full">
           {categories.map((category, index) => (
             <Chip
               key={index}
@@ -116,18 +115,19 @@ export default function HomeScreen() {
                 backgroundColor: "#F9FAF5",
               }}
               elevated
+              onPress={() => category_context.setCategoryPreference(category.name)}
             >
               {category.name}
             </Chip>
           ))}
         </View>
-        <Text className="text-[20px] font-bold text-black mt-4 mb-3">
+        <Text className="text-[20px] px-4 font-bold text-black mt-4 mb-3">
           Recommended For You
         </Text>
-
         <FlatList
           data={projects}
           renderItem={renderRecommendedProjects}
+          contentContainerStyle={{paddingHorizontal: 16, paddingVertical: 8}}
           keyExtractor={(item) => item.id.toString()}
           horizontal
           showsHorizontalScrollIndicator={false}
