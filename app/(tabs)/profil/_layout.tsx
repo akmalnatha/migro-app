@@ -1,8 +1,35 @@
 import { View, Text } from "react-native";
-import { Link, Stack } from "expo-router";
+import { Link, Stack, useSegments } from "expo-router";
 import { Chip, TextInput } from "react-native-paper";
+import { supabase } from "@/lib/supabase";
+import { useState, useEffect } from "react";
 
 export default function ProfileLayout() {
+  const [id, setId] = useState("");
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("profiles")
+          .select("id, username")
+          .eq("id", (await supabase.auth.getUser()).data.user?.id)
+          .single();
+
+        if (error) {
+          console.error(error);
+        } else {
+          setId(data.id);
+          setUsername(data.username);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchUser();
+  }, []);
   return (
     <Stack
       screenOptions={{
@@ -11,8 +38,9 @@ export default function ProfileLayout() {
       }}
     >
       <Stack.Screen
-        name="[user]"
+        name={"[user]"}
         options={{
+          title: username,
           headerTitle: (props) => (
             <View
               style={{
@@ -23,11 +51,18 @@ export default function ProfileLayout() {
               }}
             >
               <Text className="text-[20px] font-bold text-black">
-                User
+                {username}
               </Text>
             </View>
           ),
         }}
+        // listeners={{
+          
+        //   tabPress: (e) => {
+        //     e.preventDefault();
+        //     router.push(`/(tabs)/${slug}/`);
+        //   },
+        // }}
       />
       <Stack.Screen
         name="(edit-profile)/index"
