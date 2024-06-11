@@ -20,7 +20,7 @@ export default function TabLayout() {
     console.log(currentSegment)
   },[currentSegment])
   // create an array of list pages you want to hide the tab bar in
-  const pagesToHideTabBar = ['(project-detail)', 'campaign', 'faq', '(create)', 'create-campaign', 'create-faq', 'create-backing', '(edit-profile)']
+  const pagesToHideTabBar = ['[projectId]', 'campaign', 'faq', '(create)', 'create-campaign', 'create-faq', 'create-backing', '(edit-profile)']
 
   return (
     <Tabs
