@@ -21,14 +21,14 @@ export interface Category {
 
 export interface Campaign {
   id: number;
-  projectId: number;
-  imageUrl: string;
+  project_id: number;
+  image: string;
   description: string;
 }
 
 export interface ProjectFAQ {
   id: number;
-  projectId: number;
+  project_id: number;
   question: string;
   answer: string;
 }

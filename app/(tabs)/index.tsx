@@ -13,7 +13,7 @@ import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import ProjectCard from "@/components/ProjectCard";
 import { Chip, Text } from "react-native-paper";
 import { useState, useEffect } from "react";
@@ -23,9 +23,15 @@ import { fetchCategories } from "@/services/CategoryService";
 import { useCategory } from "@/context/CategoryContext";
 
 export default function HomeScreen() {
+  const router = useRouter();
   const category_context = useCategory()
   const [projects, setProjects] = useState<Project[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
+
+  function onPressChip(category: string) {
+    category_context.setCategoryPreference(category)
+    router.push("/(tabs)/explore/(content-explore)");
+  }
 
   useEffect(() => {
     const getProjects = async () => {
@@ -46,6 +52,8 @@ export default function HomeScreen() {
       {item.is_recommended ? (
         <ProjectCard
           backers={item.backers}
+          current_funding={item.current_funding}
+          target_funding={item.target_funding}
           bannerImageUrl={item.overview_image}
           category={item.category}
           daysToGo={Math.ceil(
@@ -85,6 +93,8 @@ export default function HomeScreen() {
           {featuredProject && (
             <ProjectCard
               backers={featuredProject.backers}
+              current_funding={featuredProject.current_funding}
+              target_funding={featuredProject.target_funding}
               bannerImageUrl={featuredProject.overview_image}
               category={featuredProject.category}
               daysToGo={Math.ceil(
@@ -115,7 +125,7 @@ export default function HomeScreen() {
                 backgroundColor: "#F9FAF5",
               }}
               elevated
-              onPress={() => category_context.setCategoryPreference(category.name)}
+              onPress={() => onPressChip(category.name)}
             >
               {category.name}
             </Chip>

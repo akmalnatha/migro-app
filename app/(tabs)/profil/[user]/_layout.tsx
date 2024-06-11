@@ -8,10 +8,10 @@ import { Text, TextInput } from "react-native-paper";
 
 const TopTabUser = ({ params }: { params: { user: string } }) => {
   const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
-    const fetchUser = async () => {
+    const fetchProfile = async () => {
       try {
         const { data, error } = await supabase
           .from("profiles")
@@ -23,7 +23,24 @@ const TopTabUser = ({ params }: { params: { user: string } }) => {
           console.error(error);
         } else {
           setName(data.full_name);
-          setUsername(data.username);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchProfile();
+  }, []);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const { data, error } = await supabase.auth.getUser()
+
+        if (error) {
+          console.error(error);
+        } else {
+          setEmail(data.user.email!);
         }
       } catch (error) {
         console.error(error);
@@ -47,7 +64,7 @@ const TopTabUser = ({ params }: { params: { user: string } }) => {
                 <Text className="text-[14px]">Name</Text>
                 <Text className="text-[14px] font-bold">{name}</Text>
                 <Text className="text-[14px] mt-2">Email</Text>
-                <Text className="text-[14px] font-bold">komeng@gmail.com</Text>
+                <Text className="text-[14px] font-bold">{email}</Text>
               </View>
             </View>
             <Link href={"/(tabs)/profil/(edit-profile)"} className="text-[16px] font-bold">EDIT</Link>

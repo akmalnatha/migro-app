@@ -1,11 +1,26 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, Animated, TouchableOpacity, TouchableWithoutFeedback, Dimensions, Platform } from 'react-native';
 import { Chip } from 'react-native-paper';
-import { Stack } from 'expo-router';
+import { Stack, router } from 'expo-router';
+import { useCategory } from '@/context/CategoryContext';
+import { Category } from '@/constants/Types';
+import { fetchCategories } from '@/services/CategoryService';
+import { fetchProjects } from '@/services/ProjectService';
 
 export default function ExploreLayout() {
-  const [modalVisible, setModalVisible] = useState(false);
+  const {category, setCategoryPreference, clear} = useCategory()
   const modalPosition = useRef(new Animated.Value(-Dimensions.get('window').height)).current;
+  const [modalVisible, setModalVisible] = useState(false);
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  useEffect(() => {
+    const getCategories = async () => {
+      const data = await fetchCategories();
+      setCategories(data);
+    };
+
+    getCategories();
+  }, []);
 
   useEffect(() => {
     if (modalVisible) {
@@ -60,14 +75,14 @@ export default function ExploreLayout() {
                   style={{ backgroundColor: "#DDDEE1" }}
                   onPress={toggleModal}
                 >
-                  All
+                  {category != "" ? category : "All"}
                 </Chip>
               </View>
             ),
           }}
         />
         <Stack.Screen
-          name="(project-detail)"
+          name="[projectId]"
           options={{
             title: "Detail", 
             headerTitle: (props) => (
@@ -153,10 +168,16 @@ export default function ExploreLayout() {
                 }}
                 className='h-full w-full'
               >
-                <Text style={{ fontSize: 20, fontWeight: 700 }}>All Projects</Text>
+                <TouchableWithoutFeedback onPress={() => {setModalVisible(false); clear()}}><Text style={{ fontSize: 20 }} className={`${category == "" ? "font-bold" : ""}`}>All Projects</Text></TouchableWithoutFeedback>
                 <Text style={{ fontSize: 16, color: "#008E8A" }}>Category</Text>
-                <Text style={{ fontSize: 20 }}>Art</Text>
-                <Text style={{ fontSize: 20 }}>Comic & Illustration</Text>
+                {categories.map((item, index) => {
+                  return (
+                    <TouchableWithoutFeedback onPress={() => {setModalVisible(false); setCategoryPreference(item.name)}}>
+                      <Text key={index} className={`${item.name == category ? "font-bold" : ""}`} style={{ fontSize: 20 }}>{item.name}</Text>
+                    </TouchableWithoutFeedback>
+                  )
+                })}
+                {/* <Text style={{ fontSize: 20 }}>Comic & Illustration</Text>
                 <Text style={{ fontSize: 20 }}>Games</Text>
                 <Text style={{ fontSize: 20 }}>Craft</Text>
                 <Text style={{ fontSize: 20 }}>Design</Text>
@@ -166,7 +187,7 @@ export default function ExploreLayout() {
                 <Text style={{ fontSize: 20 }}>Photography</Text>
                 <Text style={{ fontSize: 20 }}>Fashion</Text>
                 <Text style={{ fontSize: 20 }}>Shop & Commercial</Text>
-                <Text style={{ fontSize: 20 }}>Sport</Text>
+                <Text style={{ fontSize: 20 }}>Sport</Text> */}
               </View>
             </TouchableWithoutFeedback>
           </Animated.View>

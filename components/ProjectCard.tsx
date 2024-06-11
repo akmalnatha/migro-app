@@ -10,6 +10,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import ProgressIndicator from "./ProgressIndicator";
 
 interface ProjectCardProps {
   bannerImageUrl?: string;
@@ -19,6 +20,8 @@ interface ProjectCardProps {
   category: string;
   isWishlist: boolean;
   backers: number;
+  current_funding: number;
+  target_funding: number;
   daysToGo: number;
   type?: "featured" | "explore" | "explore-first";
   isProjectDetail?: boolean;
@@ -34,6 +37,8 @@ export default function ProjectCard({
   category,
   isWishlist,
   backers,
+  current_funding = 0,
+  target_funding = 0,
   daysToGo,
   type = "featured",
   isProjectDetail = false,
@@ -51,7 +56,7 @@ export default function ProjectCard({
   };
 
   return isProjectDetail ? (
-    <View className=" m-3 mt-11">
+    <View>
       <Image
         source={
           bannerImageUrl
@@ -77,8 +82,8 @@ export default function ProjectCard({
         </View>
       </View>
       <Text className=" mb-4 text-justify">{projectDesc}</Text>
-      {/* Progress Bar Indicator */}
-      <View className="flex-row items-center justify-start my-3 flex-wrap gap-3">
+      <ProgressIndicator collected={current_funding} goal={target_funding} type="detail"/>
+      <View className="flex-row items-center flex-wrap gap-3 mt-2">
         <View className=" flex-row items-center justify-start">
           <Image
             className=" rounded-full object-cover w-5 h-5 mr-1"
@@ -102,7 +107,7 @@ export default function ProjectCard({
   ) : (
     <TouchableWithoutFeedback onPress={onPress} className={addedClass}>
       <View
-        style={{ shadowColor: "#000000", shadowOpacity: 0.25, shadowRadius: 4, shadowOffset: {width: 0, height: 0}}}
+        style={{ shadowColor: "#000000", shadowOpacity: 0.25, shadowRadius: 4, shadowOffset: {width: 0, height: 0}, width: "100%"}}
         className={`bg-[#F9FAF5] rounded-[16px] flex ${
           type == "explore" ? "flex-row" : "flex-col"
         }`}
@@ -148,7 +153,7 @@ export default function ProjectCard({
           </View>
         </View>
         <View
-          className={`${type == "explore" ? "grow" : "w-full"} flex gap-3 p-3`}
+          className={`${type == "explore" ? "grow max-w-[70%]" : "w-full"} flex gap-3 p-3`}
         >
           <View className="flex-row items-center justify-between flex-wrap">
             <Text className=" text-black font-bold text-[20px]">
@@ -165,7 +170,7 @@ export default function ProjectCard({
             </View>
           </View>
           {type != "explore" ? <Text className=" mx-3">{owner}</Text> : <></>}
-          {/* Progress Bar Indicator */}
+          <ProgressIndicator collected={current_funding} goal={target_funding} type={type}/>
           <View
             className={`${
               type == "featured" ? "flex" : "hidden"

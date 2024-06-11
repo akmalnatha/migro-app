@@ -1,5 +1,5 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 
 import {
@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { TextInput } from "react-native-paper";
+import { supabase } from "@/lib/supabase";
 
 export default function EditProfile() {
   const [fullname, onChangeFullname] = useState("");
@@ -21,6 +22,48 @@ export default function EditProfile() {
   const [password, onChangePassword] = useState("");
   const [confirmPassword, onChangeConfirmPassword] = useState("");
   const [image, setImage] = useState("");
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("profiles")
+          .select("id, full_name, username, avatar_url")
+          .eq("id", (await supabase.auth.getUser()).data.user?.id)
+          .single();
+
+        if (error) {
+          console.error(error);
+        } else {
+          onChangeFullname(data.full_name);
+          onChangeUsername(data.username);
+          setImage(data.avatar_url);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchProfile();
+  }, []);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const { data, error } = await supabase.auth.getUser()
+
+        if (error) {
+          console.error(error);
+        } else {
+          onChangeEmail(data.user.email!);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -143,7 +186,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 2,
     right: 2,
-    backgroundColor: "#F9F9F9",
     borderRadius: 9999,
   },
 });

@@ -16,6 +16,8 @@ export default function CreateOverview() {
           category={"Category"}
           isWishlist={true}
           backers={12}
+          current_funding={0}
+          target_funding={0}
           daysToGo={4}
           type="explore"
         />
@@ -26,6 +28,8 @@ export default function CreateOverview() {
           category={"Category"}
           isWishlist={true}
           backers={12}
+          current_funding={0}
+          target_funding={0}
           daysToGo={4}
           type="explore"
         />
@@ -36,6 +40,8 @@ export default function CreateOverview() {
           category={"Category"}
           isWishlist={true}
           backers={12}
+          current_funding={0}
+          target_funding={0}
           daysToGo={4}
           type="explore"
         />
