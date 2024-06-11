@@ -1,6 +1,6 @@
 import { supabase } from "@/lib/supabase";
 import Ionicons from "@expo/vector-icons/build/Ionicons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
 import {
   View,
@@ -13,6 +13,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useUser } from "@/context/UserContext";
 
 export default function Login() {
   const router = useRouter();
@@ -21,7 +22,16 @@ export default function Login() {
   const [password, onChangePassword] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const {session} = useUser()
+
+  useEffect(() => {
+    if (session) {
+      router.replace("/(tabs)");
+    }
+  },[session])
+  
   async function signInWithEmail() {
+
     setLoading(true);
     const { error } = await supabase.auth.signInWithPassword({
       email: email,

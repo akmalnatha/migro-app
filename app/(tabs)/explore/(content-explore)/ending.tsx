@@ -7,8 +7,10 @@ import { fetchProjects } from "@/services/ProjectService";
 import { useState, useEffect, useContext } from "react";
 import { SearchContext } from "@/context/SearchContext";
 import { useCategory } from "@/context/CategoryContext";
+import { useRouter } from "expo-router";
 
 export default function Ending() {
+  const router = useRouter()
   const { category } = useCategory();
   const { searchQuery } = useContext(SearchContext);
   const [projects, setProjects] = useState<Project[]>([]);
@@ -63,6 +65,7 @@ export default function Ending() {
                   (1000 * 60 * 60 * 24)
               )}
               type={index == 0 ? "explore-first" : "explore"}
+              onPress={() => router.push(`/(tabs)/explore/${project.id}`)}
             />
           ))
         ) : (

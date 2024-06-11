@@ -14,6 +14,7 @@ import { Platform } from "react-native";
 import { enableScreens } from "react-native-screens";
 import { FormProvider } from "@/context/FormContext";
 import CategoryProvider from "@/context/CategoryContext";
+import { PaymentProvider } from "@/context/PaymentContext";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -38,16 +39,18 @@ export default function RootLayout() {
   }
 
   return (
-    <FormProvider>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <CategoryProvider>
-          <Stack screenOptions={{ headerTitleAlign: "center" }}>
-            <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="+not-found" />
-          </Stack>
-        </CategoryProvider>
-      </ThemeProvider>
-    </FormProvider>
+    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+      <CategoryProvider>
+        <PaymentProvider>
+          <FormProvider>  
+            <Stack screenOptions={{ headerTitleAlign: "center" }}>
+              <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="+not-found" />
+            </Stack>
+          </FormProvider>
+        </PaymentProvider>
+      </CategoryProvider>
+    </ThemeProvider>
   );
 }

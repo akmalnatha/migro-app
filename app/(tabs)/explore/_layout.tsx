@@ -102,7 +102,7 @@ export default function ExploreLayout() {
           }}
         />
         <Stack.Screen
-          name="back-project"
+          name="back-project/[backProjectID]"
           options={{
             title: "Back Project",
             headerTitle: (props) => (
@@ -122,7 +122,7 @@ export default function ExploreLayout() {
           }}
         />
         <Stack.Screen
-          name="payment"
+          name="payment/[paymentID]"
           options={{
             title: "Payment",
             headerTitle: (props) => (
@@ -172,8 +172,8 @@ export default function ExploreLayout() {
                 <Text style={{ fontSize: 16, color: "#008E8A" }}>Category</Text>
                 {categories.map((item, index) => {
                   return (
-                    <TouchableWithoutFeedback onPress={() => {setModalVisible(false); setCategoryPreference(item.name)}}>
-                      <Text key={index} className={`${item.name == category ? "font-bold" : ""}`} style={{ fontSize: 20 }}>{item.name}</Text>
+                    <TouchableWithoutFeedback key={index} onPress={() => {setModalVisible(false); setCategoryPreference(item.name)}}>
+                      <Text className={`${item.name == category ? "font-bold" : ""}`} style={{ fontSize: 20 }}>{item.name}</Text>
                     </TouchableWithoutFeedback>
                   )
                 })}

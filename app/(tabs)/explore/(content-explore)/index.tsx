@@ -32,7 +32,7 @@ export default function All() {
       const matchesCategory = category === "" || project.category === category;
       return matchesSearchQuery && matchesCategory;
     });
-    console.log(filtered);
+    // console.log(filtered);
     setFilteredProjects(filtered);
   }, [projects, searchQuery, category]);
   return (

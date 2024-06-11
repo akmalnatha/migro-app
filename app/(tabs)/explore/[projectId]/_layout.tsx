@@ -1,9 +1,17 @@
 import { MaterialTopTabs } from "@/components/navigation/TopTabNavigation";
-import { useRouter } from "expo-router";
+import { Project } from "@/constants/Types";
+import { useLocalSearchParams, usePathname, useRouter } from "expo-router";
+import { useState } from "react";
 import { TouchableOpacity, Text } from "react-native";
 
 const TopTabLayout = () => {
   const router = useRouter()
+  const pathname = usePathname()
+  // console.log(pathname)
+  const { projectId } = useLocalSearchParams()
+  // console.log(projectId)
+  const [loading, setLoading] = useState(false);
+  const [project, setProject] = useState<Project>();
   return (
     <>
       <MaterialTopTabs
@@ -21,7 +29,7 @@ const TopTabLayout = () => {
       </MaterialTopTabs>
       <TouchableOpacity
         className={`w-full p-3 rounded-3xl items-center justify-center mt-2 mb-9 bg-[#008E8A]`}
-        onPress={() => router.push("/(tabs)/explore/back-project")}
+        onPress={() => router.push(`/(tabs)/explore/back-project/${projectId}`)}
       >
         <Text className="text-white">Back This Project!</Text>
       </TouchableOpacity>

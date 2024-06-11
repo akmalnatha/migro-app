@@ -23,9 +23,9 @@ const frequentlyAskedQuestions = [
 
 export default function Faq() {
   const pathname = usePathname()
-  console.log(pathname)
+  // console.log(pathname)
   const { projectId } = useGlobalSearchParams()
-  console.log(projectId)
+  // console.log(projectId)
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [faq, setFaq] = useState<ProjectFAQ[]>([]);
@@ -48,11 +48,11 @@ export default function Faq() {
           setFaq([])
         } else {
           setFaq(data as unknown as ProjectFAQ[]); 
-          console.log(data)
+          // console.log(data)
         }
       } catch (error) {
         console.error(error);
-        console.log("nice")
+        // console.log("nice")
       }
     };
 

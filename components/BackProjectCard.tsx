@@ -40,9 +40,9 @@ export default function BackProjectCard({
       <Divider />
       {benefits && (
         <>
-          <Text className="font-bold text-[16px]">Benefits</Text>
-          <Text className="text-[16px]">{benefits}</Text>
-          <Divider />
+          <Text className="font-bold text-[16px] ml-5 mt-2">Benefits</Text>
+          <Text className="text-[16px] ml-5 ">{benefits}</Text>
+          <Divider className="ml-5 mt-2"/>
         </>
       )}
       <TouchableOpacity

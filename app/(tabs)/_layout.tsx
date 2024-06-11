@@ -17,10 +17,10 @@ export default function TabLayout() {
   // get the current page from the segment
   const currentSegment = segment[segment.length - 1]
   useEffect(()=> {
-    console.log(currentSegment)
+    // console.log(currentSegment)
   },[currentSegment])
   // create an array of list pages you want to hide the tab bar in
-  const pagesToHideTabBar = ['[projectId]', 'campaign', 'faq', '(create)', 'create-campaign', 'create-faq', 'create-backing', '(edit-profile)']
+  const pagesToHideTabBar = ['[projectId]', '[paymentID]', '[backProjectID]', 'campaign', 'faq', '(create)', 'create-campaign', 'create-faq', 'create-backing', '(edit-profile)']
 
   return (
     <Tabs

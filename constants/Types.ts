@@ -33,6 +33,22 @@ export interface ProjectFAQ {
   answer: string;
 }
 
+export interface Backings {
+  id: number;
+  project_id: number;
+  price: number;
+  title: string;
+  description: string;
+  benefit: string
+}
+
+export interface Backers {
+  id: number;
+  project_id: number;
+  user_id: string;
+  total_pledge: number;
+}
+
 export interface Profile {
   id: number;
   username: string;

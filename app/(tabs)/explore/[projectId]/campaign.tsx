@@ -29,9 +29,9 @@ import { Image, SafeAreaView, ScrollView, Text, View } from "react-native";
 
 export default function CampaignPage() {
   const pathname = usePathname()
-  console.log(pathname)
+  // console.log(pathname)
   const { projectId } = useGlobalSearchParams()
-  console.log(projectId)
+  // console.log(projectId)
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [campaign, setCampaign] = useState<Campaign[]>([]);
@@ -54,11 +54,11 @@ export default function CampaignPage() {
           setCampaign([])
         } else {
           setCampaign(data as unknown as Campaign[]); 
-          console.log(data)
+          // console.log(data)
         }
       } catch (error) {
         console.error(error);
-        console.log("nice")
+        // console.log("nice")
       }
     };
 
